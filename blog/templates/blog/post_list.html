@@ -1,22 +1,31 @@
-<html>
+{% load staticfiles %}
+    <html>
         <head>
-            <title>Django blog</title>
+            <title>Django Blog </title>
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         </head>
         <body>
-            <div>
-                <h1><a href="">Django Blog Web</a></h1>
+            <div class="page-header">
+                <h1><a href="/">Django Blog Web</a></h1>
             </div>
 
-            <div>
-                <p>published: 26.08.2014, 23:14</p>
-                <h2><a href="">My first post</a></h2>
-                <p><em>Django(gdh/ˈdʒæŋɡoʊ/jang-goh) es un framework para aplicaciones web gratuito y open source, escrito en Python. Es un WEB framework - un conjunto de componentes que te ayudan a desarrollar sitios web más fácil y rápidamente.</em></p>
-            </div>
-
-            <div>
-                <p>published: 26.08.2014, 23:14</p>
-                <h2><a href="">My second post</a></h2>
-                <p><em>Para entender para que es Django, necesitamos mirar mas de cerca a los servidores. Lo primero es que el servidor necesita saber que quieres que te sirva una página web.</em></p>
-            </div>
+            <div class="content container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            {% for post in posts %}
+                                <div class="post">
+                                    <div class="date">
+                                        {{ post.published_date }}
+                                    </div>
+                                    <h1><a href="">{{ post.title }}</a></h1>
+                                    <p>{{ post.text|linebreaksbr }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
         </body>
     </html>
